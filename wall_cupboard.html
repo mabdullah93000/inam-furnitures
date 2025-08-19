@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <meta name="title" content="Wall Cupboard - Inam Furniture">
+  <meta name="description"
+    content="Explore stylish and comfortable sofa designs at Inam Furniture. Perfect for your living room, with premium quality and affordable prices.">
+  <meta name="keywords"
+    content="Inam Furniture, wall cupboard, living room furniture, comfortable sofas, modern sofas, luxury furniture, Pakistan">
+  <meta name="author" content="Inam Furniture">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="geo.region" content="PK">
+  <meta name="geo.placename" content="Pakistan">
+  <meta name="geo.position" content="30.3753;69.3451">
+  <meta name="ICBM" content="30.3753, 69.3451">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/971/971704.png">
+
+  <title>Inam Furniture</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    /* Header  */
+    /* Header */
+    header {
+      background: black;
+      color: #fff;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: color .25s ease;
+    }
+
+    nav a:hover {
+      color: #fb9300;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        right: 12px;
+        top: 56px;
+        width: 220px;
+        background: black;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 14px;
+        color: yellow;
+        /* mobile yellow */
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product-card {
+      text-decoration: none;
+      color: #000;
+      text-align: center;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Sofa features (fixed duplicate issue) */
+
+    .sofa-details {
+      display: none;
+      /* hide on page load */
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: 20px auto;
+    }
+
+
+    /* Sofa Features Section */
+    .sofa-features {
+      margin-top: 25px;
+      background: #eee;
+      padding: 18px 22px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeSlideIn 0.6s ease-out forwards;
+    }
+
+    .sofa-features h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ff6f00;
+      margin-bottom: 12px;
+      border-bottom: 3px solid #ff9800;
+      padding-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #sofaFeatures li {
+      font-size: 17px;
+      font-weight: 700;
+      padding: 8px 0;
+      border-bottom: 1px dashed #ff9800;
+      color: #333;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    #sofaFeatures li:hover {
+      transform: translateX(5px);
+      color: #ff6f00;
+    }
+
+    #sofaFeatures li:last-child {
+      border-bottom: none;
+    }
+
+    /* Animation */
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    .sofa-images {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sofa-images img {
+      max-width: 32%;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 8px 14px;
+      background: #444;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* WhatsApp button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: #25D366;
+      color: white;
+      font-size: 28px;
+      padding: 12px 14px;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .whatsapp-float:hover {
+      background: #1ebe5b;
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      text-align: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      margin-top: 20px;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 15px;
+      background: #ff9800;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Animated heading style */
+    .collection-title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 900;
+      margin: 25px 0 15px;
+      color: #090909;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: fadeInUp 0.8s ease-out;
+      position: relative;
+    }
+
+    .collection-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #ff9800;
+      margin: 8px auto 0;
+      border-radius: 2px;
+      animation: growBar 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes growBar {
+      0% {
+        width: 0;
+      }
+
+      100% {
+        width: 80px;
+      }
+    }
+
+    /* Bed features (same style as sofa features) */
+    .bed-features {
+      margin-top: 25px;
+      background: #fff8e7;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 0.6s ease-in-out;
+    }
+
+    .bed-features h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #444;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #ff9800;
+      padding-bottom: 5px;
+    }
+
+    #bedFeatures li {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 6px 0;
+      border-bottom: 1px dashed #ccc;
+      transition: transform 0.2s ease-in-out, color 0.2s;
+    }
+
+    #bedFeatures li:hover {
+      transform: translateX(5px);
+      color: #ff6f00;
+    }
+
+    #bedFeatures li:last-child {
+      border-bottom: none;
+    }
+
+    /* Animation for features section */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /*Make images wider on small screens*/
+    @media (max-width: 600px) {
+      .sofa-images img {
+        max-width: 48% !important;
+        /* was ~32%, now wider */
+      }
+
+      .product-card img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <header>
+    <h1>Majlis Collection</h1>
+    <span class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></span>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="sofa.html">Sofa Collection</a>
+      <a href="set.html">Majlis Collection</a>
+
+    </nav>
+  </header>
+
+  <!-- Sofa Collection Heading -->
+  <h2 class="collection-title">Cupboard Collection</h2>
+
+
+  <!-- Sofa List -->
+  <section id="sofaList" class="product-grid">
+    <div class="product-card" onclick="showDetails(1)">
+      <img src="wardrope cupboard 3.jpg" alt="Cupboard ">
+      <h3>Wardrope Collection / <br>الماری کلیکشن</h3>
+    </div>
+    <div class="product-card" onclick="showDetails(2)">
+      <img src="lightening wall 1.jpg" alt="Cupboard">
+      <h3>Design Cupboard Collection / <br>ڈیزائن الماری کلیکشن </h3>
+    </div>
+    <div class="product-card" onclick="showDetails(3)">
+      <img src="unique cupboard 8.jpg" alt="Cupboard">
+      <h3>Unique Cupboard Collection/ <br> یونیک کپ بورڈ کلیکشن</h3>
+    </div>
+  </section>
+
+  <!-- Sofa Details -->
+  <section id="sofaDetails" class="sofa-details">
+    <span class="back-btn" onclick="goBack()">← Back to Sofas</span>
+    <h2 id="sofaTitle"></h2>
+    <div class="sofa-images" id="sofaImages"></div>
+    <div class="sofa-features">
+      <h3>Features:</h3>
+      <ul id="sofaFeatures"></ul>
+    </div>
+  </section>
+
+  <!-- Bed Collection Heading -->
+  <h2 class="collection-title">Table & Kitchen Collection</h2>
+
+  <!-- Bed List (styled same as sofa list) -->
+  <section id="bedList" class="product-grid">
+    <div class="product-card" onclick="showBedDetails(1)">
+      <img src="comp table 11.jpg" alt="Table">
+      <h3>Computer Table Collection / <br> کمپیوٹر ٹیبل کلیکشن</h3>
+    </div>
+    <div class="product-card" onclick="showBedDetails(2)">
+      <img src="dining tab 2.jpg" alt="Dining Table">
+      <h3>Dining Table Collection / <br> ڈائننگ ٹیبل کلیکشن</h3>
+    </div>
+    <div class="product-card" onclick="showBedDetails(3)">
+      <img src="kichen wall 6.jpg" alt="Bed 3">
+      <h3>Kitchen Cabinet Collection / <br> کچن کیبنٹ کلیکشن</h3>
+    </div>
+  </section>
+
+
+  <!-- Bed Details -->
+  <section id="bedDetails" class="sofa-details">
+    <span class="back-btn" onclick="goBackBed()">← Back to Beds</span>
+    <h2 id="bedTitle"></h2>
+    <div class="sofa-images" id="bedImages"></div>
+    <div class="sofa-features">
+      <h3>Features:</h3>
+      <ul id="bedFeatures"></ul>
+    </div>
+  </section>
+
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightboxImg" src="" alt="">
+    <br>
+    <a id="downloadLink" class="download-btn" download>Download</a>
+  </div>
+
+  <!-- WhatsApp Contact -->
+  <a href="https://wa.me/+923468383365" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+
+  <script>
+    const sofas = {
+      1: {
+        title: "Wardrope Collection",
+        images: ["wardrobe cupboard 1.jpg", "wardrobe cupboard 2.jpg", "wardrope cupboard 3.jpg", "wardrope cupboard 4.jpg", "wardrope cupboard 5.jpg", "wardrope cupboard 6.jpg",
+          "Pictures/wardrope 7.jpg",
+          "Pictures/wardrope 8.jpg",
+          "Pictures/wardrope 9.jpg",
+          "Pictures/wardrope 10.jpg",
+          "Pictures/wardrope 11.jpg",
+          "Pictures/wardrope 12.jpg",
+          "Pictures/wardrope 13.jpg",
+          "Pictures/wardrope 14.jpg",
+          "Pictures/wardrope 15.jpg",
+          "Pictures/wardrope 16.jpg",
+          "Pictures/wardrope 17.jpg",
+          "Pictures/wardrope 18.jpg",
+          "Pictures/wardrope 19.jpg",
+          "Pictures/wardrope 20.jpg",
+        ],
+        features: [
+          "Premium quality wooden frame",
+          "High-density materials",
+          "Elegant modern design",
+          "Available in multiple colors",
+          "Lightening process"
+        ]
+      },
+      2: {
+        title: "Design Cupboard Collection ",
+        images: ["lightening wall 1.jpg", "lightening wall 2.jpg", "lightening wall 3.jpg", "lightening wall 4.jpg", "lightening wall 5.jpg", "lightening wall 6.jpg",
+          "Pictures/design cupboard 7.jpg",
+          "Pictures/design cupboard 8.jpg",
+          "Pictures/design cupboard 9.jpg",
+          "Pictures/design cupboard 10.jpg",
+          "Pictures/design cupboard 11.jpg",
+          "Pictures/design cupboard 12.jpg",
+          "Pictures/design cupboard 13.jpg",
+          "Pictures/design cupboard 14.jpg",
+          "Pictures/design cupboard 15.jpg",
+          "Pictures/design cupboard 16.jpg",
+          "Pictures/design cupboard 17.jpg",
+          "Pictures/design cupboard 18.jpg",
+          "Pictures/design cupboard 19.jpg",
+          "Pictures/design cupboard 20.jpg",
+          "Pictures/design cupboard 21.jpg",
+          "Pictures/design cupboard 22.jpg"
+        ],
+        features: [
+          "Premium-grade solid teak wood with luxurious texture",
+          "Built to last a lifetime with exceptional craftsmanship",
+          "Maximized storage space with smart compartments",
+          "Sophisticated design that elevates any room décor",
+          "Smooth, scratch-proof & stain-resistant surface finish",
+          "Moisture & termite protection for all seasons",
+          "Perfect blend of modern elegance and practical utility",
+          "Seamless edges & flawless polish for a classy appeal"
+        ]
+      },
+      3: {
+        title: "Unique Cupboard Collection",
+        images: ["unique cupboard 1.jpg", "unique cupboard 2.jpg", "unique cupboard 7.jpg", "unique cupboard 4.jpg", "unique cupboard 5.jpg", "unique cupboard 8.jpg",
+          "Pictures/wall cupboard 7.jpg",
+          "Pictures/wall cupboard 8.jpg",
+          "Pictures/wall cupboard 9.jpg",
+          "Pictures/wall cupboard 10.jpg",
+          "Pictures/wall cupboard 11.jpg",
+          "Pictures/wall cupboard 12.jpg",
+          "Pictures/wall cupboard 13.jpg",
+          "Pictures/wall cupboard 14.jpg",
+          "Pictures/wall cupboard 15.jpg",
+          "Pictures/wall cupboard 16.jpg",
+          "Pictures/wall cupboard 17.jpg",
+          "Pictures/wall cupboard 18.jpg",
+          "Pictures/wall cupboard 19.jpg",
+          "Pictures/wall cupboard 20.jpg"
+        ],
+        features: [
+          "Premium solid teak wood craftsmanship",
+          "Elegant design with intricate detailing",
+          "Spacious compartments for organized storage",
+          "High-gloss, scratch-resistant finish",
+          "Moisture & termite-resistant coating",
+          "Soft-close doors for silent operation",
+          "Perfect blend of style and durability"
+        ]
+      }
+    };
+
+    const beds = {
+      1: {
+        title: "Computer Tables Collection",
+        images: [
+          "comp table 1.jpg",
+          "comp table 2.jpg",
+          "comp table 3.jpg",
+          "comp table 4.jpg",
+          "comp table 5.jpg",
+          "comp table 6.jpg",
+          "comp table 7.jpg",
+          "comp table 8.jpg",
+          "comp table 9.jpg",
+          "comp table 10.jpg",
+          "comp table 11.jpg",
+          "comp table 12.jpg",
+          "comp table 13.jpg",
+          "comp table 14.jpg",
+          "comp table 15.jpg",
+          "comp table 16.jpg",
+          "comp table 17.jpg",
+          "comp table 18.jpg"
+        ],
+        features: [
+          "Crafted from premium solid Sheesham wood for lasting strength",
+          "Ergonomic design to ensure comfortable working posture",
+          "Spacious surface for multiple monitors & accessories",
+          "Smooth, scratch-resistant finish for a polished look",
+          "Integrated storage compartments & cable management system",
+          "Modern and versatile style to match any office or home interior",
+          "Durable, termite-resistant coating for long-term use",
+          "Perfect blend of aesthetics and functionality for productivity"
+        ]
+      },
+      2: {
+        title: " Dining Table Collection",
+        images: [
+          "dining tab 1.jpg",
+          "dining tab 2.jpg",
+          "dining tab 3.jpg",
+          "dining tab 4.jpg",
+          "dining tab 5.jpg",
+          "Pictures/dining table 6.jpg",
+          "dining tab 7.jpg",
+          "dining tab 8.jpg",
+          "dining tab 9.jpg",
+          "dining tab 10.jpg",
+          "dining tab 11.jpg",
+          "dining tab 12.jpg",
+          "Pictures/dining table 13.jpg",
+          "Pictures/dining table 14.jpg",
+          "Pictures/dining table 15.jpg",
+          "Pictures/dining table 16.jpg",
+          "Pictures/dining table 17.jpg",
+          "Pictures/dining table 18.jpg",
+          "Pictures/dining table 19.jpg",
+          "Pictures/dining table 20.jpg",
+          "Pictures/dining table 21.jpg",
+          "Pictures/dining table 22.jpg"
+        ],
+        features: [
+          "Modern & minimalist design that complements any interior",
+          "Crafted from premium engineered wood for long-lasting durability",
+          "Effortless self-assembly with sturdy fittings",
+          "Scratch-resistant & easy-to-clean laminated surface",
+          "Multi-purpose storage compartments for dining essentials",
+          "Doubles as a stylish sideboard or display cupboard",
+          "Ergonomic height for comfortable dining experience",
+          "Perfect balance of style, function, and elegance"
+        ]
+      },
+      3: {
+        title: "Kitchen Cabinet Collection",
+        images: [
+          "kichen wall 1.jpg",
+          "kichen wall 2.jpg",
+          "kichen wall 3.jpg",
+          "kichen wall 4.jpg",
+          "kichen wall 5.jpg",
+          "kichen wall 6.jpg",
+          "kichen wall 7.jpg",
+          "kichen wall 8.jpg",
+          "kichen wall 9.jpg",
+          "kichen wall 10.jpg",
+          "kichen wall 11.jpg",
+          "kichen wall 12.jpg",
+          "Pictures/kitchen 13.jpg",
+          "Pictures/kitchen 14.jpg",
+          "Pictures/kitchen 15.jpg",
+          "Pictures/kitchen 16.jpg",
+          "Pictures/kitchen 17.jpg",
+          "Pictures/kitchen 18.jpg",
+          "Pictures/kitchen 19.jpg",
+          "Pictures/kitchen 20.jpg"
+        ],
+        features: [
+          "Premium moisture-resistant wood for long-lasting durability",
+          "Modern & space-efficient design for maximum storage",
+          "Soft-close hinges for smooth and silent door operation",
+          "Scratch & stain-resistant laminated finish",
+          "Elegant color combinations to enhance your kitchen’s look",
+          "Easy-to-clean surfaces for hassle-free maintenance",
+          "Customizable compartments for all kitchen essentials"
+        ]
+      }
+    };
+
+    // Updated Sofa Show Details
+    function showDetails(id) {
+      document.querySelectorAll('h2.collection-title, #bedList, #bedDetails').forEach(el => el.style.display = 'none');
+      document.getElementById('sofaList').style.display = 'none';
+      document.getElementById('sofaDetails').style.display = 'block';
+
+      const sofa = sofas[id];
+      document.getElementById('sofaTitle').textContent = sofa.title;
+
+      const imgContainer = document.getElementById('sofaImages');
+      imgContainer.innerHTML = sofa.images.map(img =>
+        `<img src="${img}" alt="${sofa.title}" onclick="openLightbox('${img}')">`
+      ).join('');
+
+      const featureList = document.getElementById('sofaFeatures');
+      featureList.innerHTML = sofa.features.map(f => `<li>${f}</li>`).join('');
+    }
+
+    function goBack() {
+      document.querySelectorAll('h2.collection-title').forEach(el => el.style.display = 'block');
+      document.getElementById('sofaDetails').style.display = 'none';
+      document.getElementById('sofaList').style.display = 'grid';
+      document.getElementById('bedList').style.display = 'grid';
+    }
+
+    function showBedDetails(bedId) {
+      document.querySelectorAll('h2.collection-title, #sofaList, #sofaDetails').forEach(el => el.style.display = 'none');
+      document.getElementById("bedList").style.display = "none";
+      document.getElementById("bedDetails").style.display = "block";
+
+      const bed = beds[bedId];
+      document.getElementById("bedTitle").textContent = bed.title;
+
+      const imgContainer = document.getElementById("bedImages");
+      imgContainer.innerHTML = "";
+      bed.images.forEach(img => {
+        imgContainer.innerHTML += `<img src="${img}" alt="${bed.title}" onclick="openLightbox('${img}')">`;
+      });
+
+      const featuresList = document.getElementById("bedFeatures");
+      featuresList.innerHTML = "";
+      bed.features.forEach(feat => {
+        featuresList.innerHTML += `<li>${feat}</li>`;
+      });
+    }
+
+    function goBackBed() {
+      document.querySelectorAll('h2.collection-title').forEach(el => el.style.display = 'block');
+      document.getElementById("bedDetails").style.display = "none";
+      document.getElementById("bedList").style.display = "grid";
+      document.getElementById("sofaList").style.display = "grid";
+    }
+
+    function openLightbox(imgSrc) {
+      document.getElementById('lightbox').style.display = 'block';
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('downloadLink').href = imgSrc;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    /* ====== MENU ====== */
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+  </script>
+
+</body>
+
+</html>

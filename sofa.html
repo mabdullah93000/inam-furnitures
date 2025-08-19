@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <meta name="title" content="Sofas - Inam Furniture">
+  <meta name="description"
+    content="Explore stylish and comfortable sofa designs at Inam Furniture. Perfect for your living room, with premium quality and affordable prices.">
+  <meta name="keywords"
+    content="Inam Furniture, sofas, sofa sets, living room furniture, comfortable sofas, modern sofas, luxury furniture, Pakistan">
+  <meta name="author" content="Inam Furniture">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="geo.region" content="PK">
+  <meta name="geo.placename" content="Pakistan">
+  <meta name="geo.position" content="30.3753;69.3451">
+  <meta name="ICBM" content="30.3753, 69.3451">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/971/971704.png">
+
+  <title>Inam Furniture</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    /* Header */
+    header {
+      background:black;
+      color: #fff;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: color .25s ease;
+    }
+
+    nav a:hover {
+      color: #fb9300;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: white#fb9300;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        right: 12px;
+        top: 56px;
+        width: 220px;
+        background: black;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 14px;
+        color: yellow;
+        /* mobile yellow */
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product-card {
+      text-decoration: none;
+      color: #000;
+      text-align: center;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Sofa features (fixed duplicate issue) */
+
+    .sofa-details {
+      display: none;
+      /* hide on page load */
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: 20px auto;
+    }
+
+
+    /* Sofa Features Section */
+    .sofa-features {
+      margin-top: 25px;
+      background: #eee;
+      padding: 18px 22px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeSlideIn 0.6s ease-out forwards;
+    }
+
+    .sofa-features h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ff6f00;
+      margin-bottom: 12px;
+      border-bottom: 3px solid #ff9800;
+      padding-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #sofaFeatures li {
+      font-size: 17px;
+      font-weight: 700;
+      padding: 8px 0;
+      border-bottom: 1px dashed #ff9800;
+      color: #333;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    #sofaFeatures li:hover {
+      transform: translateX(5px);
+      color: #ff6f00;
+    }
+
+    #sofaFeatures li:last-child {
+      border-bottom: none;
+    }
+
+    /* Animation */
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    .sofa-images {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sofa-images img {
+      max-width: 32%;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 8px 14px;
+      background: #444;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* WhatsApp button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: #25D366;
+      color: white;
+      font-size: 28px;
+      padding: 12px 14px;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .whatsapp-float:hover {
+      background: #1ebe5b;
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      text-align: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      margin-top: 20px;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 15px;
+      background: #ff9800;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Animated heading style */
+    .collection-title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 900;
+      margin: 25px 0 15px;
+      color: #090909;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: fadeInUp 0.8s ease-out;
+      position: relative;
+    }
+
+    .collection-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #ff9800;
+      margin: 8px auto 0;
+      border-radius: 2px;
+      animation: growBar 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes growBar {
+      0% {
+        width: 0;
+      }
+
+      100% {
+        width: 80px;
+      }
+    }
+
+    /* Bed features (same style as sofa features) */
+    .bed-features {
+      margin-top: 25px;
+      background: #fff8e7;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 0.6s ease-in-out;
+    }
+
+    .bed-features h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #444;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #ff9800;
+      padding-bottom: 5px;
+    }
+
+    #bedFeatures li {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 6px 0;
+      border-bottom: 1px dashed #ccc;
+      transition: transform 0.2s ease-in-out, color 0.2s;
+    }
+
+    #bedFeatures li:hover {
+      transform: translateX(5px);
+      color: #ff6f00;
+    }
+
+    #bedFeatures li:last-child {
+      border-bottom: none;
+    }
+
+    /* Animation for features section */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+
+    /*Make images wider on small screens*/
+    @media (max-width: 600px) {
+      .sofa-images img {
+        max-width: 48% !important;
+        /* was ~32%, now wider */
+      }
+
+      .product-card img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <header>
+    <h1>Sofa & Bed Collection Collection</h1>
+    <span class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></span>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="set.html">Majlis Collection</a>
+      <a href="wall_cupboard.html">Cupboard Collection</a>
+
+    </nav>
+  </header>
+
+  <!-- Sofa Collection Heading -->
+  <h2 class="collection-title">Sofa Collection</h2>
+
+
+  <!-- Sofa List -->
+  <section id="sofaList" class="product-grid">
+    <div class="product-card" onclick="showDetails(1)">
+      <img src="sofa collection 1.jpg" alt="Sofa 1">
+      <h3>Chester Sofa Collection / <br> چیسٹر صوفہ کلیکشن</h3>
+    </div>
+    <div class="product-card" onclick="showDetails(2)">
+      <img src="Dewaan collection 3.jpg" alt="Sofa 2">
+      <h3>Dewaan Sofa Collection / <br>دیوان صوفہ کلیکشن</h3>
+    </div>
+    <div class="product-card" onclick="showDetails(3)">
+      <img src="lux 1.jpg" alt="Sofa 3">
+      <h3>Luxury Sofa Collection / <br> لگژری صوفہ کلیکشن</h3>
+    </div>
+  </section>
+
+  <!-- Sofa Details -->
+  <section id="sofaDetails" class="sofa-details">
+    <span class="back-btn" onclick="goBack()">← Back to Sofas</span>
+    <h2 id="sofaTitle"></h2>
+    <div class="sofa-images" id="sofaImages"></div>
+    <div class="sofa-features">
+      <h3>Features:</h3>
+      <ul id="sofaFeatures"></ul>
+    </div>
+  </section>
+
+  <!-- Bed Collection Heading -->
+  <h2 class="collection-title">Bed Collection</h2>
+
+  <!-- Bed List (styled same as sofa list) -->
+  <section id="bedList" class="product-grid">
+    <div class="product-card" onclick="showBedDetails(1)">
+      <img src="shine bed 2.jpg" alt="Bed 1">
+      <h3>Royal Bed Collection / <br> شاہی بیڈ کلیکشن</h3>
+    </div>
+    <div class="product-card" onclick="showBedDetails(2)">
+      <img src="Byron bed 2.jpg" alt="Bed 2">
+      <h3>Byron Bed Collection / <br> بائرن بیڈ کلیکشن</h3>
+    </div>
+    <div class="product-card" onclick="showBedDetails(3)">
+      <img src="Wood bed 2.jpg" alt="Bed 3">
+      <h3>Pure Wood Bed Collection / <br> خالص لکڑی کا بیڈ کلیکشن</h3>
+    </div>
+  </section>
+
+
+  <!-- Bed Details -->
+  <section id="bedDetails" class="sofa-details">
+    <span class="back-btn" onclick="goBackBed()">← Back to Beds</span>
+    <h2 id="bedTitle"></h2>
+    <div class="sofa-images" id="bedImages"></div>
+    <div class="sofa-features">
+      <h3>Features:</h3>
+      <ul id="bedFeatures"></ul>
+    </div>
+  </section>
+
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightboxImg" src="" alt="">
+    <br>
+    <a id="downloadLink" class="download-btn" download>Download</a>
+  </div>
+
+  <!-- WhatsApp Contact -->
+  <a href="https://wa.me/+923468383365" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+
+  <script>
+    const sofas = {
+      1: {
+        title: "Chester Sofa Collection",
+        images: ["sofa collection 2.jpg", "sofa collection 3.jpg", "sofa collection 4.jpg", "sofa collection 1.jpg", "chester sofa 1.jpg", "chester sofa 2.jpg",
+          "Pictures/chester sofa 7.jpg",
+          "Pictures/chester sofa 8.jpg",
+          "Pictures/chester sofa 9.jpg",
+          "Pictures/chester sofa 10.jpg",
+          "Pictures/chester sofa 11.jpg",
+          "Pictures/chester sofa 12.jpg",
+          "Pictures/chester sofa 13.jpg",
+          "Pictures/chester sofa 14.jpg",
+          "Pictures/chester sofa 15.jpg",
+          "Pictures/chester sofa 16.jpg",
+          "Pictures/chester sofa 17.jpg",
+          "Pictures/chester sofa 18.jpg",
+          "Pictures/chester sofa 19.jpg",
+          "Pictures/chester sofa 20.jpg",
+          "Pictures/chester sofa 21.jpg",
+          "Pictures/chester sofa 22.jpg"
+
+        ],
+        features: [
+          "Premium quality wooden frame",
+          "High-density foam cushions",
+          "Elegant modern design",
+          "Available in multiple colors",
+          "Durable fabric with easy cleaning"
+        ]
+      },
+      2: {
+        title: "Dewaan Sofa Collection",
+        images: ["Dewaan collection1.jpg", "Dewaan collection 3.jpg", "Dewaan collection 4.jpg", "Dewaan collection 2.jpg", "Dewaan collection 7.jpg", "Dewaan collection 8.jpg",
+          "Pictures/dewaan sofa 7.jpg", "Pictures/dewaan sofa 8.jpg", "Pictures/dewaan sofa 9.jpg", "Pictures/dewaan sofa 10.jpg", "Pictures/dewaan sofa 11.jpg", "Pictures/dewaan sofa 12.jpg",
+          "Pictures/dewaan sofa 13.jpg", "Pictures/dewaan sofa 14.jpg", "Pictures/dewaan sofa 15.jpg", "Pictures/dewaan sofa 16.jpg", "Pictures/dewaan sofa 17.jpg", "Pictures/dewaan sofa 18.jpg",
+          "Pictures/dewaan sofa 19.jpg", "Pictures/dewaan sofa 20.jpg", "Pictures/dewaan sofa 21.jpg", "Pictures/dewaan sofa 22.jpg",
+        ],
+        features: [
+          "Solid teak wood structure",
+          "Soft microfiber fabric",
+          "Space-saving design",
+          "Ergonomic comfort",
+          "Stain-resistant material"
+        ]
+      },
+      3: {
+        title: "Luxury Sofa Collection",
+        images: ["lux 1.jpg", "lux 2.jpg", "lux 3.jpg", "lux 4.jpg", "lux 5.jpg", "lux 6.jpg",
+          "Pictures/luxury sofa 7.jpg",
+          "Pictures/luxury sofa 8.jpg",
+          "Pictures/luxury sofa 9.jpg",
+          "Pictures/luxury sofa 10.jpg",
+          "Pictures/luxury sofa 11.jpg",
+          "Pictures/luxury sofa 12.jpg",
+          "Pictures/luxury sofa 13.jpg",
+          "Pictures/luxury sofa 14.jpg",
+          "Pictures/luxury sofa 15.jpg",
+          "Pictures/luxury sofa 16.jpg",
+          "Pictures/luxury sofa 17.jpg",
+          "Pictures/luxury sofa 18.jpg",
+          "Pictures/luxury sofa 19.jpg",
+          "Pictures/luxury sofa 20.jpg",
+          "Pictures/luxury sofa 21.jpg",
+          "Pictures/luxury sofa 22.jpg"
+        ],
+        features: [
+          "Luxury velvet finish",
+          "Extra wide seating",
+          "Adjustable backrest",
+          "Handcrafted armrests",
+          "Eco-friendly materials"
+        ]
+      }
+    };
+
+    const beds = {
+      1: {
+        title: "Royal Bed Collection",
+        images: [
+          "shine bed 1.jpg",
+          "shine bed 2.jpg",
+          "shine bed 3.jpg",
+          "shine bed 4.jpg",
+          "shine bed 5.jpg",
+          "shine bed 6.jpg",
+          "Pictures/royal bed 7.jpg",
+          "Pictures/royal bed 8.jpg",
+          "Pictures/royal bed 9.jpg",
+          "Pictures/royal bed 10.jpg",
+          "Pictures/royal bed 11.jpg",
+          "Pictures/royal bed 12.jpg",
+          "Pictures/royal bed 13.jpg",
+          "Pictures/royal bed 14.jpg",
+          "Pictures/royal bed 15.jpg",
+          "Pictures/royal bed 16.jpg",
+          "Pictures/royal bed 17.jpg",
+          "Pictures/royal bed 18.jpg",
+          "Pictures/royal bed 19.jpg",
+          "Pictures/royal bed 20.jpg",
+          "Pictures/royal bed 21.jpg",
+          "Pictures/royal bed 22.jpg"
+        ],
+        features: [
+          "Solid Sheesham wood construction",
+          "Premium upholstered headboard",
+          "Spacious under-bed storage",
+          "Elegant hand-carved design",
+          "Durable and termite-resistant finish"
+        ]
+      },
+      2: {
+        title: " Byron Bed Collection",
+        images: [
+          "Byron bed 1.jpg",
+          "Byron bed 2.jpg",
+          "Byron bed 3.jpg",
+          "Byron bed 4.jpg",
+          "Byron bed 5.jpg",
+          "Byron bed 6.jpg",
+          "Pictures/byron bed 7.jpg",
+          "Pictures/byron bed 8.jpg",
+          "Pictures/byron bed 9.jpg",
+          "Pictures/byron bed 10.jpg",
+          "Pictures/byron bed 11.jpg",
+          "Pictures/byron bed 12.jpg",
+          "Pictures/byron bed 13.jpg",
+          "Pictures/byron bed 14.jpg",
+          "Pictures/byron bed 15.jpg",
+          "Pictures/byron bed 16.jpg",
+          "Pictures/byron bed 17.jpg",
+          "Pictures/byron bed 18.jpg",
+          "Pictures/byron bed 19.jpg",
+          "Pictures/byron bed 20.jpg",
+          "Pictures/byron bed 21.jpg",
+          "Pictures/byron bed 22.jpg"
+        ],
+        features: [
+          "Minimalist contemporary style",
+          "High-quality engineered wood",
+          "Easy assembly design",
+          "Scratch-resistant laminated surface",
+          "Things carrier",
+          "Use as a cupboard"
+        ]
+      },
+      3: {
+        title: "Pure Wood Bed Collection",
+        images: [
+          "Wood bed 1.jpg",
+          "Wood bed 2.jpg",
+          "Wood bed 3.jpg",
+          "Wood bed 4.jpg",
+          "Wood bed 5.jpg",
+          "Wood bed 6.jpg",
+          "Pictures/wood bed 7.jpg",
+          "Pictures/wood bed 8.jpg",
+          "Pictures/wood bed 9.jpg",
+          "Pictures/wood bed 10.jpg",
+          "Pictures/wood bed 11.jpg",
+          "Pictures/wood bed 12.jpg",
+          "Pictures/wood bed 13.jpg",
+          "Pictures/wood bed 14.jpg",
+          "Pictures/wood bed 15.jpg",
+          "Pictures/wood bed 16.jpg",
+          "Pictures/wood bed 17.jpg",
+          "Pictures/wood bed 18.jpg",
+          "Pictures/wood bed 19.jpg",
+          "Pictures/wood bed 20.jpg",
+          "Pictures/wood bed 21.jpg",
+          "Pictures/wood bed 22.jpg"
+        ],
+        features: [
+          "Luxury Italian leather headboard",
+          "Extra king-size dimensions",
+          "Premium memory foam mattress",
+          "Golden accents with handcrafted detailing",
+          "Moisture-resistant premium wood"
+        ]
+      }
+    };
+
+    // Updated Sofa Show Details
+    function showDetails(id) {
+      document.querySelectorAll('h2.collection-title, #bedList, #bedDetails').forEach(el => el.style.display = 'none');
+      document.getElementById('sofaList').style.display = 'none';
+      document.getElementById('sofaDetails').style.display = 'block';
+
+      const sofa = sofas[id];
+      document.getElementById('sofaTitle').textContent = sofa.title;
+
+      const imgContainer = document.getElementById('sofaImages');
+      imgContainer.innerHTML = sofa.images.map(img =>
+        `<img src="${img}" alt="${sofa.title}" onclick="openLightbox('${img}')">`
+      ).join('');
+
+      const featureList = document.getElementById('sofaFeatures');
+      featureList.innerHTML = sofa.features.map(f => `<li>${f}</li>`).join('');
+    }
+
+    function goBack() {
+      document.querySelectorAll('h2.collection-title').forEach(el => el.style.display = 'block');
+      document.getElementById('sofaDetails').style.display = 'none';
+      document.getElementById('sofaList').style.display = 'grid';
+      document.getElementById('bedList').style.display = 'grid';
+    }
+
+    function showBedDetails(bedId) {
+      document.querySelectorAll('h2.collection-title, #sofaList, #sofaDetails').forEach(el => el.style.display = 'none');
+      document.getElementById("bedList").style.display = "none";
+      document.getElementById("bedDetails").style.display = "block";
+
+      const bed = beds[bedId];
+      document.getElementById("bedTitle").textContent = bed.title;
+
+      const imgContainer = document.getElementById("bedImages");
+      imgContainer.innerHTML = "";
+      bed.images.forEach(img => {
+        imgContainer.innerHTML += `<img src="${img}" alt="${bed.title}" onclick="openLightbox('${img}')">`;
+      });
+
+      const featuresList = document.getElementById("bedFeatures");
+      featuresList.innerHTML = "";
+      bed.features.forEach(feat => {
+        featuresList.innerHTML += `<li>${feat}</li>`;
+      });
+    }
+
+    function goBackBed() {
+      document.querySelectorAll('h2.collection-title').forEach(el => el.style.display = 'block');
+      document.getElementById("bedDetails").style.display = "none";
+      document.getElementById("bedList").style.display = "grid";
+      document.getElementById("sofaList").style.display = "grid";
+    }
+
+    function openLightbox(imgSrc) {
+      document.getElementById('lightbox').style.display = 'block';
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('downloadLink').href = imgSrc;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    /* ====== MENU ====== */
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+
+
+
+  </script>
+
+</body>
+
+</html>

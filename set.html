@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Majlis Collection - Inam Furniture</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="title" content="Majlis Collection - Inam Furniture">
+  <meta name="description"
+    content="Discover premium Arabic and Royal Majlis collections at Inam Furniture. Elegant, comfortable, and affordable designs for your home.">
+  <meta name="keywords" content="Majlis, Arabic Majlis, Royal Majlis, Furniture, Inam Furniture, Sofa Sets, Home Decor">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Inam Furniture">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/971/971704.png">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --brand: #ff6f00;
+      --bg: #f8f8f8;
+      --dark: #222;
+      --card: #fff;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: #222;
+      scroll-behavior: smooth;
+    }
+
+    /* Header */
+    header {
+      background: var(--dark);
+      color: #fff;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: color .25s ease;
+    }
+
+    nav a:hover {
+      color: var(--brand);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        right: 12px;
+        top: 56px;
+        width: 220px;
+        background: var(--dark);
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 14px;
+        color: yellow;
+        /* mobile yellow */
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+
+    /* Section titles */
+    h2.section-title {
+      text-align: center;
+      margin: 28px 12px 6px;
+      font-size: 40px;
+      font-weight:bold;
+      letter-spacing: .3px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    h2.section-title.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .subnote {
+      text-align: center;
+      margin: 0 12px 8px;
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* Product grid */
+    .product-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      padding: 16px;
+      max-width: 1200px;
+      margin: 0 auto 10px;
+    }
+
+    .product-card {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+      overflow: hidden;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform .5s ease, opacity .5s ease;
+    }
+
+    .product-card.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .thumb {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform .25s ease;
+    }
+
+    .thumb:hover {
+      transform: scale(1.03);
+    }
+
+    .card-body {
+      padding: 10px 12px 14px;
+      text-align: center;
+    }
+
+    .card-title {
+      margin: 6px 0 3px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .card-desc {
+      margin: 0;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .row-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      outline: 0;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .15s ease, background .25s ease;
+    }
+
+    .btn:hover {
+      background: #e55f00;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      width: min(90vw, 900px);
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 16px;
+      right: 22px;
+      color: #fff;
+      font-size: 36px;
+      cursor: pointer;
+    }
+
+    /* Details Modal (with animated features) */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, .55);
+      z-index: 120;
+      padding: 16px;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(960px, 96vw);
+      background: #fff;
+      color: #111;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, .35);
+      animation: pop .18s ease;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(.98);
+        opacity: .6
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    .modal-head {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #111;
+      color: #fff;
+    }
+
+    .modal-body {
+      display: grid;
+      gap: 14px;
+      padding: 14px;
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    @media (max-width: 820px) {
+      .modal-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .modal-img {
+      width: 100%;
+      border-radius: 10px;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .features h4 {
+      margin: 6px 0 8px;
+      font-size: 18px;
+      color: #111;
+    }
+
+    .features ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .features li {
+      background: #fff7ee;
+      border: 1px dashed #ffc488;
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #333;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .features li.show {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all .35s ease;
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+      font-size: 26px;
+      z-index: 140;
+      transition: transform .2s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.05);
+    }
+
+    /* Animated row beneath headings */
+    .section-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+
+    .title-row {
+      display: block;
+      width: 0;
+      height: 4px;
+      margin: 6px auto 0;
+      background: var(--brand);
+      border-radius: 2px;
+      transition: width 1s ease;
+    }
+
+    .section-title.show .title-row {
+      width: 120px;
+      /* Adjust length of row */
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Majlis Collection</h1>
+    <span class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></span>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="sofa.html">Sofa Collection</a>
+      <a href="wall_cupboard.html">Cupboard Collection</a>
+
+    </nav>
+  </header>
+
+  <!-- Arabic Majlis -->
+  <h2 class="section-title" id="arabic-title">
+    Arabic Majlis Collection
+    <span class="title-row"></span>
+  </h2>
+  <section id="arabic-grid" class="product-gallery"></section>
+
+  <!-- Turkish Majlis -->
+  <h2 class="section-title" id="royal-title">
+    Turkish Majlis Collection
+    <span class="title-row"></span>
+  </h2>
+  <section id="royal-grid" class="product-gallery"></section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="lightboxClose(event)">
+    <span class="close" aria-label="close">&times;</span>
+    <img id="lightbox-img" alt="">
+  </div>
+
+  <!-- Details Modal -->
+  <div id="detailsModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modalTitle" style="margin:0;font-size:18px;"></h3>
+        <button class="btn" onclick="closeDetails()"><i class="fa-solid fa-xmark"></i> Close</button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <img id="modalImg" class="modal-img" src="" alt="">
+          <div class="row-actions" style="margin-top:10px">
+            <a id="modalDownload" class="btn" download><i class="fa-solid fa-download"></i> Download</a>
+            <button class="btn" onclick="openLightbox(document.getElementById('modalImg').src)">
+              <i class="fa-solid fa-magnifying-glass-plus"></i> Zoom
+            </button>
+          </div>
+        </div>
+        <div class="features">
+          <h4>Features</h4>
+          <ul id="featuresList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/+923468383365" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    /* ====== DATA (22 + 22) ====== */
+    const arabicFeatures = [
+      "Premium solid-wood frame with long-life durability",
+      "High-density, comfort foam seating",
+      "Elegant Arabic patterns & piping",
+      "Scratch-resistant, easy-clean fabric",
+      "Moisture & termite-resistant protection",
+      "Custom sizes and colors available"
+    ];
+
+    const royalFeatures = [
+      "Hand-carved accents & luxury finish",
+      "Deep-cushion comfort with premium foam",
+      "High-gloss, stain-resistant surface",
+      "Soft-close side storage options",
+      "Termite & moisture shield coating",
+      "Custom upholstery & trim options"
+    ];
+
+    // Create 22 items quickly
+    const arabicItems = [
+      {
+        title: "Arabic Majlis Set 1",
+        img: "Pictures/arabic majlis 1.jpg",
+        desc: "Elegant Arabic design • Set 1",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 2",
+        img: "Pictures/arabic majlis 2.jpg",
+        desc: "Elegant Arabic design • Set 2",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 3",
+        img: "Pictures/arabic majlis 3.jpg",
+        desc: "Elegant Arabic design • Set 3",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 4",
+        img: "Pictures/arabic majlis 4.jpg",
+        desc: "Elegant Arabic design • Set 4",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 5",
+        img: "Pictures/arabic majlis 5.jpg",
+        desc: "Elegant Arabic design • Set 5",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 6",
+        img: "Pictures/arabic majlis 6.jpg",
+        desc: "Elegant Arabic design • Set 6",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 7",
+        img: "Pictures/arabic majlis 7.jpg",
+        desc: "Elegant Arabic design • Set 7",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 8",
+        img: "Pictures/arabic majlis 8.jpg",
+        desc: "Elegant Arabic design • Set 8",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 9",
+        img: "Pictures/arabic majlis 9.jpg",
+        desc: "Elegant Arabic design • Set 9",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 10",
+        img: "Pictures/arabic majlis 10.jpg",
+        desc: "Elegant Arabic design • Set 10",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 11",
+        img: "Pictures/arabic majlis 11.jpg",
+        desc: "Elegant Arabic design • Set 11",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 12",
+        img: "Pictures/arabic majlis 12.jpg",
+        desc: "Elegant Arabic design • Set 12",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 13",
+        img: "Pictures/arabic majlis 13.jpg",
+        desc: "Elegant Arabic design • Set 13",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 14",
+        img: "Pictures/arabic majlis 14.jpg",
+        desc: "Elegant Arabic design • Set 14",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 15",
+        img: "Pictures/arabic majlis 15.jpg",
+        desc: "Elegant Arabic design • Set 15",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 16",
+        img: "Pictures/arabic majlis 16.jpg",
+        desc: "Elegant Arabic design • Set 16",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 17",
+        img: "Pictures/arabic majlis 17.jpg",
+        desc: "Elegant Arabic design • Set 17",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 18",
+        img: "Pictures/arabic majlis 18.jpg",
+        desc: "Elegant Arabic design • Set 18",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 19",
+        img: "Pictures/arabic majlis 19.jpg",
+        desc: "Elegant Arabic design • Set 19",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 20",
+        img: "Pictures/arabic majlis 20.jpg",
+        desc: "Elegant Arabic design • Set 20",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 21",
+        img: "Pictures/arabic majlis 21.jpg",
+        desc: "Elegant Arabic design • Set 21",
+        features: arabicFeatures
+      },
+      {
+        title: "Arabic Majlis Set 22",
+        img: "Pictures/arabic majlis 22.jpg",
+        desc: "Elegant Arabic design • Set 22",
+        features: arabicFeatures
+      },
+    ];
+
+    // Turkish Majlis
+
+    const royalItems = [
+      {
+        title: "Turkish Majlis Set 1",
+        img: "Pictures/turkish majlis 1.jpg",
+        desc: "Luxurious turkish style • Set 1",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 2",
+        img: "Pictures/turkish majlis 2.jpg",
+        desc: "Luxurious turkish style • Set 2",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 3",
+        img: "Pictures/turkish majlis 3.jpg",
+        desc: "Luxurious turkish style • Set 3",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 4",
+        img: "Pictures/turkish majlis 4.jpg",
+        desc: "Luxurious turkish style • Set 4",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 5",
+        img: "Pictures/turkish majlis 5.jpg",
+        desc: "Luxurious turkish style • Set 5",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 6",
+        img: "Pictures/turkish majlis 6.jpg",
+        desc: "Luxurious turkish style • Set 6",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 7",
+        img: "Pictures/turkish majlis 7.jpg",
+        desc: "Luxurious turkish style • Set 7",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 8",
+        img: "Pictures/turkish majlis 8.jpg",
+        desc: "Luxurious turkish style • Set 8",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 9",
+        img: "Pictures/turkish majlis 9.jpg",
+        desc: "Luxurious turkish style • Set 9",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 10",
+        img: "Pictures/turkish majlis 10.jpg",
+        desc: "Luxurious turkish style • Set 10",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 11",
+        img: "Pictures/turkish majlis 11.jpg",
+        desc: "Luxurious turkish style • Set 11",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 12",
+        img: "Pictures/turkish majlis 12.jpg",
+        desc: "Luxurious turkish style • Set 12",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 13",
+        img: "Pictures/turkish majlis 13.jpg",
+        desc: "Luxurious turkish style • Set 13",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 14",
+        img: "Pictures/turkish majlis 14.jpg",
+        desc: "Luxurious turkish style • Set 14",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 15",
+        img: "Pictures/turkish majlis 15.jpg",
+        desc: "Luxurious turkish style • Set 15",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 16",
+        img: "Pictures/turkish majlis 16.jpg",
+        desc: "Luxurious turkish style • Set 16",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 17",
+        img: "Pictures/turkish majlis 17.jpg",
+        desc: "Luxurious turkish style • Set 17",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 18",
+        img: "Pictures/turkish majlis 18.jpg",
+        desc: "Luxurious turkish style • Set 18",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 19",
+        img: "Pictures/turkish majlis 19.jpg",
+        desc: "Luxurious turkish style • Set 19",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 20",
+        img: "Pictures/turkish majlis 20.jpg",
+        desc: "Luxurious turkish style • Set 20",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 21",
+        img: "Pictures/turkish majlis 21.jpg",
+        desc: "Luxurious turkish style • Set 21",
+        features: royalFeatures
+      },
+      {
+        title: "Turkish Majlis Set 22",
+        img: "Pictures/turkish majlis 22.jpg",
+        desc: "Luxurious turkish style • Set 22",
+        features: royalFeatures
+      },
+    ];
+
+
+    /* ====== RENDER ====== */
+    function cardTemplate(item, idx, group) {
+      const safeImg = encodeURI(item.img);
+      return `
+      <article class="product-card animate" data-group="${group}" data-index="${idx}">
+        <img class="thumb" src="${safeImg}" alt="${item.title}" onclick="openLightbox('${safeImg}')">
+        <div class="card-body">
+          <h3 class="card-title">${item.title}</h3>
+          <p class="card-desc">${item.desc}</p>
+          <div class="row-actions">
+            <a class="btn" href="${safeImg}" download><i class="fa-solid fa-download"></i> Download</a>
+            <button class="btn" onclick="openDetails('${group}', ${idx})">
+              <i class="fa-solid fa-circle-info"></i> Details
+            </button>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    function renderGrid(containerId, items, group) {
+      const el = document.getElementById(containerId);
+      el.innerHTML = items.map((it, idx) => cardTemplate(it, idx, group)).join('');
+    }
+
+    renderGrid('arabic-grid', arabicItems, 'arabic');
+    renderGrid('royal-grid', royalItems, 'royal');
+
+    /* ====== MENU ====== */
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+
+    /* ====== LIGHTBOX ====== */
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = src;
+      lb.classList.add('open');
+    }
+    function lightboxClose(e) {
+      // close if click backdrop or X
+      if (e.target.id === 'lightbox' || e.target.classList.contains('close')) {
+        document.getElementById('lightbox').classList.remove('open');
+      }
+    }
+
+    /* ====== DETAILS MODAL + Animated Features ====== */
+    function openDetails(group, idx) {
+      const data = (group === 'arabic') ? arabicItems[idx] : royalItems[idx];
+      const modal = document.getElementById('detailsModal');
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalImg').src = data.img;
+      const dl = document.getElementById('modalDownload');
+      dl.href = data.img;
+      dl.download = data.img.split('/').pop();
+
+      // features (animated in)
+      const ul = document.getElementById('featuresList');
+      ul.innerHTML = '';
+      data.features.forEach((f, i) => {
+        const li = document.createElement('li');
+        li.textContent = f;
+        ul.appendChild(li);
+        // staggered reveal
+        setTimeout(() => li.classList.add('show'), 120 * (i + 1));
+      });
+
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+    function closeDetails() {
+      const modal = document.getElementById('detailsModal');
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.getElementById('featuresList').innerHTML = '';
+    }
+    // close modal on background click
+    document.getElementById('detailsModal').addEventListener('click', (e) => {
+      if (e.target.id === 'detailsModal') closeDetails();
+    });
+
+    /* ====== SCROLL ANIMATIONS ====== */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .18 });
+
+    // observe titles and cards
+    document.querySelectorAll('.section-title').forEach(el => io.observe(el));
+    function observeCards() {
+      document.querySelectorAll('.product-card').forEach(el => io.observe(el));
+    }
+    observeCards();
+
+    // Accessibility: close on ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('lightbox').classList.remove('open');
+        closeDetails();
+      }
+    });
+  </script>
+</body>
+
+</html>
